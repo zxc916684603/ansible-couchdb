@@ -1,29 +1,29 @@
 # Start or Stop the Services
 
-These commands you must know when you using the RabbitMQ of Websoft9
+These commands you must know when you using the CouchDB of Websoft9
 
-## RabbitMQ
+## CouchDB
 
 ```shell
-sudo systemctl start rabbitmq-server
-sudo systemctl stop rabbitmq-server
-sudo systemctl restart rabbitmq-server
-sudo systemctl status rabbitmq-server
+sudo systemctl start couchdb-server
+sudo systemctl stop couchdb-server
+sudo systemctl restart couchdb-server
+sudo systemctl status couchdb-server
 
-# you can use this debug mode if RabbitMQ service can't run
-rabbitmq-server console
+# you can use this debug mode if CouchDB service can't run
+couchdb-server console
 ```
 
-## RabbitMQ
+## CouchDB
 
 ```shell
-sudo systemctl start rabbitmq-server
-sudo systemctl stop rabbitmq-server
-sudo systemctl restart rabbitmq-server
-sudo systemctl status rabbitmq-server
+sudo systemctl start couchdb-server
+sudo systemctl stop couchdb-server
+sudo systemctl restart couchdb-server
+sudo systemctl status couchdb-server
 
-# you can use this debug mode if RabbitMQ service can't run
-rabbitmq-server console
+# you can use this debug mode if CouchDB service can't run
+couchdb-server console
 ```
 
 ### MySQL

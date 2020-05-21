@@ -1,0 +1,24 @@
+# https://docs.couchdb.org/en/latest/install/unix.html#dependencies
+
+- name: Add CouchDB repositories
+  yum_repository:
+    name: bintray-apache-couchdb-rpm
+    file: bintray-apache-couchdb-rpm
+    description: CouchDB RPM Repository
+    baseurl: http://apache.bintray.com/couchdb-rpm/el$releasever/$basearch/
+    gpgcheck: no
+    enabled: yes
+  when: ansible_distribution == "CentOS"
+
+- name: Add CouchDB repositories
+  yum_repository:
+    name: bintray-apache-couchdb-rpm
+    file: bintray-apache-couchdb-rpm
+    description: CouchDB RPM Repository
+    baseurl: http://apache.bintray.com/couchdb-rpm/el{{ansible_distribution_major_version}}/$basearch/
+    gpgcheck: no
+    enabled: yes
+  when: ansible_distribution != "CentOS"
+
+- name: Install CouchDB
+  shell: yum -y install couchdb

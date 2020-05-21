@@ -4,14 +4,14 @@ sidebarDepth: 3
 
 # 参数
 
-RabbitMQ 预装包包含 RabbitMQ 运行所需一序列支撑软件（简称为“组件”），下面列出主要组件名称、安装路径、配置文件地址、端口、版本等重要的信息。
+CouchDB 预装包包含 CouchDB 运行所需一序列支撑软件（简称为“组件”），下面列出主要组件名称、安装路径、配置文件地址、端口、版本等重要的信息。
 
 ## 路径
 
-### RabbitMQ
+### CouchDB
 
-RabbitMQ 安装目录： */data/rabbitmq*  
-RabbitMQ 日志目录： */data/logs/rabbitmq*  
+CouchDB 安装目录： */data/couchdb*  
+CouchDB 日志目录： */data/logs/couchdb*  
 
 ### Erlang
 
@@ -25,7 +25,7 @@ Erlang 安装目录： */data/erlang*
 
 | 名称 | 端口号 | 用途 |  必要性 |
 | --- | --- | --- | --- |
-| HTTP | 15672 | 通过 HTTP 访问 RabbitMQ 控制台 | 可选 |
+| HTTP | 15672 | 通过 HTTP 访问 CouchDB 控制台 | 可选 |
 | TCP | 5672 | epmd | 可选 |
 | TCP | 55672 | Erlang distribution | 可选 |
 
@@ -44,6 +44,6 @@ lsb_release -a
 yum info erlang
 apt show erlang
 
-# RabbitMQ version
-rabbitmqctl status | grep RabbitMQ*
+# CouchDB version
+couchdbctl status | grep CouchDB*
 ```

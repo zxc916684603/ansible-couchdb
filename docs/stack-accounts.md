@@ -2,12 +2,12 @@
 
 You use the **SSH** to connect your Server and run the command `cat /credentials/password.txt` to get the username and password of this deployment solution.
 
-These accounts are required for RabbitMQ image installation and configuration
+These accounts are required for CouchDB image installation and configuration
 
-## RabbitMQ
+## CouchDB
 
-* RabbitMQ administrator username: `admin`
-* RabbitMQ administrator password: stored in the file of your server */credentials/password.txt*
+* CouchDB administrator username: `admin`
+* CouchDB administrator password: stored in the file of your server */credentials/password.txt*
   > If there no password.txt exist, the administrator password is `admin`
 
 ## MySQL

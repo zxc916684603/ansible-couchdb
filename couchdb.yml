@@ -10,7 +10,7 @@
     - vars/main.yml
   
   vars_prompt:
-    - name: 'rabbitmq_selection'
+    - name: 'couchdb_selection'
       prompt: "Choose the RabbitMQ distribution \n
       1: RabbitMQ 5 Classic\n
       2: RabbitMQ Artemis\n"
@@ -18,20 +18,20 @@
       default: 1
 
   vars:
-    rabbitmq_select:
+    couchdb_select:
       '1': "classic"
       '2': "artemis"
 
-    rabbitmq_distribution: "{{rabbitmq_select[rabbitmq_selection]}}"
+    couchdb_distribution: "{{couchdb_select[couchdb_selection]}}"
   
   pre_tasks:
     - debug:
-        msg: Will install {{rabbitmq_distribution}}
+        msg: Will install {{couchdb_distribution}}
 
   roles:
     - {role: role_common, tags: "role_common"}  
     - {role: role_cloud, tags: "role_cloud"}  
     - {role: role_jdk, tags: "role_jdk"}  
-    - {role: rabbitmq, tags: "rabbitmq"}
+    - {role: couchdb, tags: "couchdb"}
     - {role: role_preend, tags: "preend"}
     - {role: role_end, tags: "role_end"}
