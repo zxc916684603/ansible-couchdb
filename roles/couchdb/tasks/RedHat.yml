@@ -23,7 +23,7 @@
   
 # https://docs.couchdb.org/en/latest/install/unix.html#dependencies
 - name: Install Dependencies
-  shell: yum install autoconf autoconf-archive automake -y \
+  shell: yum install -y autoconf autoconf-archive automake  \
     curl-devel erlang-asn1 erlang-erts erlang-eunit gcc-c++ \
     erlang-os_mon erlang-xmerl erlang-erl_interface help2man \
     js-devel-1.8.5 libicu-devel libtool perl-Test-Harness
