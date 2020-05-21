@@ -35,7 +35,7 @@
 - name: set soft link
   shell: |
     ln -sb /opt/couchdb  /data/couchdb 
-    ln -sb /opt/couchdb/config/config.json /data/config/couchdb_config.json
+    ln -sb /opt/couchdb/etc /data/config/couchdb 
     ln -sb /var/log/couchdb /data/logs/couchdb
 
 # Check version,
