@@ -9,4 +9,10 @@
     apt-key adv --keyserver keyserver.ubuntu.com --recv-keys  8756C4F765C9AC3CB6B85D62379CE192D401AB61
     sudo apt update
     sudo apt install -y couchdb
+
+# https://docs.couchdb.org/en/latest/install/unix.html#dependencies
+- name: Install Dependencies
+  shell: apt-get --no-install-recommends -y install \
+    build-essential pkg-config erlang \
+    libicu-dev libmozjs185-dev libcurl4-openssl-dev
     
