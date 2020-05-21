@@ -1,76 +1,108 @@
-# RabbitMQ Notes
+# CouchDB.Notes
 
-组件名称：RabbitMQ-Server  
-安装文档：https://www.rabbitmq.com/download.html  
-配置文档：https://www.rabbitmq.com/admin-guide.html  
-支持平台： Debian家族 | RHEL家族 | Windows | Kubernetes |Docker  
+组件名称：couchdb 
+安装文档：https://docs.couchdb.org/en/latest/install/index.html#
+配置文档：https://docs.couchdb.org/en/latest/config/index.html
+支持平台：Debian家族 | RHEL家族 | Windows | macOS | Docker
 
 责任人：helin
 
 ## 概要
 
-RabbitMQ是一款开源的MQ系统，它包含RabbitMQ-Server和RabbitMQ-Client，服务器上运行的是RabbitMQ-Server
+**CouchDB** 是一个开源的面向文档的数据库管理系统，可以通过 RESTful JavaScript Object Notation (JSON) API 访问。CouchDb是一个存储Json文档的数据库。CouchDB是一个完全包含Web的数据库。使用JSON文档存储数据。使用Web浏览器通过HTTP访问您的文档。使用JavaScript 查询，组合和 转换文档。CouchDB适用于现代网络和移动应用程序。您可以使用CouchDB的增量复制高效地分发数据。
 
 ## 环境要求
 
-* 程序语言：Java 
-* 应用服务器：自带
-* 数据库：无
-* 依赖组件：Erlang
+* 程序语言：   erlang
+* 应用服务器：
+* 数据库:   
+* 依赖组件：
 * 其他：
 
 ## 安装说明
 
-官方建议使用其自身提供的erlang和rabbitmq-server的仓库，不建议使用操作系统自带的仓库或其他第三方仓库。同时，官方提供了自动安装仓库的自动化脚本。
-
 下面基于不同的安装平台，分别进行安装说明。
+
+### 依赖
+
+* Erlang OTP (19.x, 20.x >= 21.3.8.5, 21.x >= 21.2.3, 22.x >= 22.0.5)
+* ICU  操作系统默认已安装
+* OpenSSL common已安装
+* Mozilla SpiderMonkey (1.8.5) 需yum/apt安装
+* GNU Make 
+* GNU Compiler Collection
+* libcurl
+* help2man
+* Python (>=2.7) for docs
+* Python Sphinx (>=1.1.3)
 
 ### CentOS
 
 ```shell
-# 分别安装erlang源和rabbitmq-server源
-curl -s https://packagecloud.io/install/repositories/rabbitmq/erlang/script.rpm.sh | sudo bash
-curl -s https://packagecloud.io/install/repositories/rabbitmq/rabbitmq-server/script.rpm.sh | sudo bash
+sudo yum -y install epel-release     #安装epel
+vi /etc/yum.repos.d/bintray-apache-couchdb-rpm.repo
 
-# 安装
-yum install erlang rabbitmq-server -y
+[bintray--apache-couchdb-rpm]
+name=bintray--apache-couchdb-rpm
+baseurl=http://apache.bintray.com/couchdb-rpm/el7/$basearch/
+gpgcheck=0
+repo_gpgcheck=0
+enabled=1
+
+
+sudo yum -y install couchdb #安装couchdb
+sudo systemctl start couchdb
+sudo systemctl enable couchdb
+
 ```
 
 ### Ubuntu
 
-```shell
-# 分别安装erlang源和rabbitmq-server源
-curl -s https://packagecloud.io/install/repositories/rabbitmq/erlang/script.deb.sh | sudo bash
-curl -s https://packagecloud.io/install/repositories/rabbitmq/rabbitmq-server/script.deb.sh | sudo bash
-
-# 安装
-sudo apt-get update -y
-apt install erlang rabbitmq-server -y
 ```
+sudo apt-get install apache2 -y #安装apache
+sudo systemctl start apache2
+sudo systemctl enable apache2
+
+
+echo "deb https://apache.bintray.com/couchdb-deb xenial main" \ | sudo tee -a /etc/apt/sources.list           #添加CouchDB的官方存储库
+curl -L https://couchdb.apache.org/repo/bintray-pubkey.asc \ | sudo apt-key add -                    #对添加的存储库进行签名
+sudo apt-get update -y        #更新存储库
+sudo apt-get install couchdb -y #安装couchdb
+
+
+选择配置为一个独立或群集节点
+输入绑定地址：0.0.0.0
+输入密码：
+确认密码：
+sudo systemctl start couchdb
+sudo systemctl enable couchdb
+
+
+```
+
+
 
 ## 路径
 
-* 程序路径：/usr/lib/rabbitmq/lib/rabbitmq_server-*
-* 日志路径：/var/log/rabbitmq  
-* 配置文件路径：  
+* 程序路径：     /opt/couchdb
+* 日志路径：   /var/log/couchdb 
+* 配置文件路径：/opt/couchdb/etc
+* 启动路径:       /opt/couchdb/bin/couchdb
 * 其他...
 
 ## 配置
 
 安装完成后，需要依次完成如下配置
 
+centos上
+
 ```shell
-# Set RabbitMQ
-- name: Restart RabbitMQ
-  shell: systemctl start rabbitmq-server
+vi  /opt/couchdb/etc/default.ini
+#bind_address=0.0.0.0
 
-- name: Enable the management console of RabbitMQ
-  shell: rabbitmq-plugins enable rabbitmq_management
 
-- name: Create administrator for RabbitMQ console
-  shell: |
-    rabbitmqctl add_user admin admin
-    rabbitmqctl set_user_tags admin administrator
+[admins]
+#admin = mysecretpassword
 ```
 
 ## 账号密码
@@ -79,38 +111,28 @@ apt install erlang rabbitmq-server -y
 
 如果有数据库
 
-* 数据库安装方式：包管理工具自带 or 自行安装
+* 数据库安装方式：
 * 账号密码：
 
 ### 后台账号
 
 如果有后台账号
 
-* 登录地址
-* 账号密码
-* 密码修改方案：最好是有命令行修改密码的方案
+* 登录地址  http://服务器IP:5984/_utils/
+
+* 账号密码: 账户为 admin 密码为 mysecretpassword
+
+* 密码修改方案：vi  /opt/couchdb/etc/local.ini   
+
+  修改  admin=新密码
 
 
 ## 服务
 
-本项目安装后自动生成：rabbitmq-server 服务
-
-备注：如果开机没有服务，程序无法运行的情况下，需要自行编写服务后存放到项目中
-
-服务的模板如下：
+本项目安装后有服务,可设置为开机自启
 
 ```
-[Unit]
-Description=Redmine
-After=nginx.service
-[Service]
-Environment=RAILS_ENV=production
-Type=simple
-WorkingDirectory=/data/wwwroot/redmine
-ExecStart=/usr/local/bin/puma -b tcp://127.0.0.1:9292 -e production 
-User=redmine
-[Install]
-WantedBy=multi-user.target
+sudo systemctl enable couchdb                      
 ```
 
 ## 环境变量
@@ -124,31 +146,29 @@ WantedBy=multi-user.target
 通过如下的命令获取主要组件的版本号: 
 
 ```
-# Check RabbitMQ version
-sudo rabbitmqctl status | grep RabbitMQ*
-
-# Check Erlang version
-ls /usr/lib64/erlang
+# Check couchdb version
+cd  /opt/couchdb/bin/
+./couchdb -version
 ```
 
 ## 常见问题
 
 #### 有没有管理控制台？
 
-*http:// 公网 IP:15672* 即可访问控制台，系统默认存在一个无法通过外网访问的guest/guest账号
+*http:// 公网 IP:5984
 
 #### 本项目需要开启哪些端口？
 
-| item      | port  |
-| --------- | ----- |
-| lustering | 25672 |
-| AMQP      | 5672  |
-| http      | 15672 |
+| item | port |
+| ---- | ---- |
+| tcp  | 5984 |
+| tcp  | 4369 |
+| tcp  | 1024 |
 
 #### 有没有CLI工具？
 
-有，通过 `rabbitmqctl` 查看工具的说明
+cdbcli
 
 ## 日志
 
-* 2020-04-14 完成CentOS安装研究
+* 2020-05-13 完成CentOS安装研究
