@@ -17,10 +17,11 @@
     backrefs: yes 
 
 - name: Configure CouchDB - enable administrator password
-  lineinfile:
+  blockinfile:
     path: /opt/couchdb/etc/default.ini
-    line: 'admin = {{couchdb_admin_password}}'
-    create: yes
+    block: |
+      [admin]
+      admin = {{couchdb_admin_password}}
 
 - name: Enable CouchDB service
   service:
