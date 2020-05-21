@@ -11,17 +11,16 @@
 
 - name: Configure CouchDB - enable remote connection
   lineinfile:
-    dest: /opt/couchdb/etc/default.ini
-    regexp: '#bind_address=0.0.0.0'
-    line: 'bind_address=0.0.0.0'
+    path: /opt/couchdb/etc/default.ini
+    regexp: 'bind_address = 127.0.0.1'
+    line: 'bind_address = 0.0.0.0'
     backrefs: yes 
 
 - name: Configure CouchDB - enable administrator password
   lineinfile:
-    dest: /opt/couchdb/etc/default.ini
-    regexp: '#admin = mysecretpassword'
+    path: /opt/couchdb/etc/default.ini
     line: 'admin = {{couchdb_admin_password}}'
-    backrefs: yes 
+    create: yes
 
 - name: Enable CouchDB service
   service:
