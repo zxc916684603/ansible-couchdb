@@ -24,6 +24,13 @@
       [admins]
       {{couchdb_admin_username}} = {{couchdb_admin_password}}
 
+- name: Configure CouchDB - auto create database 
+  blockinfile:
+    path: /opt/couchdb/etc/local.ini
+    insertafter: "^uuid"
+    block: "single_node=true"
+    
+      
 - name: Enable CouchDB service
   service:
     name: couchdb
