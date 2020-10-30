@@ -1,18 +1,16 @@
+# pre-installation
 - name: Import repository
   shell: |
-    apt-get install -y apt-transport-https gnupg ca-certificates
-    echo "deb https://apache.bintray.com/couchdb-deb {{ansible_distribution_release}} main" \
-    | sudo tee -a /etc/apt/sources.list.d/couchdb.list
+    curl -L https://couchdb.apache.org/repo/bintray-pubkey.asc | apt-key add -
+    echo "deb https://apache.bintray.com/couchdb-deb bionic main" | tee -a /etc/apt/sources.list
 
+# install couchdb
 - name: Install CouchDB
   shell: |
-    apt-key adv --keyserver keyserver.ubuntu.com --recv-keys  8756C4F765C9AC3CB6B85D62379CE192D401AB61
-    apt update -y
-    apt install -y couchdb
+    echo "couchdb couchdb/mode select none" | debconf-set-selections
+    apt update
+    DEBIAN_FRONTEND=noninteractive apt-get install -y --force-yes couchdb
 
-# https://docs.couchdb.org/en/latest/install/unix.html#dependencies
-- name: Install Dependencies
-  shell: apt-get --no-install-recommends -y install \
-    build-essential pkg-config erlang \
-    libicu-dev libmozjs185-dev libcurl4-openssl-dev
+
+
     
