@@ -1,7 +1,7 @@
 #全局
 region: "0"
 
-preend_certbot: True
+nginx_certbot: True
 nginx_reverse_proxy_port: "5984"
 nginx_appname: "couchdb"
 nginx_vhost_mode: "reverse"
