@@ -21,8 +21,8 @@
   blockinfile:
     path: /opt/couchdb/etc/default.ini
     block: |
-      [admin]
-      admin = {{couchdb_admin_password}}
+      [admins]
+      {{couchdb_admin_username}} = {{couchdb_admin_password}}
 
 - name: Enable CouchDB service
   service:
@@ -32,18 +32,18 @@
 
 
 # set soft link, -b cover the exist links
-# ln -sb src des
+# ln -sf src des
 - name: set soft link
   shell: |
-    ln -sb /opt/couchdb  /data/couchdb 
-    ln -sb /opt/couchdb/etc /data/config/couchdb 
-    ln -sb /var/log/couchdb /data/logs/couchdb
+    ln -sf /opt/couchdb  /data/wwwroot/
+    ln -sf /opt/couchdb/etc /data/config/couchdb 
+    ln -sf /var/log/couchdb /data/logs/
 
 # Check version,
 # must use sudo sh -c to solve the no-root permission
 - block:
   - name: Check CouchDB Version
-    shell: sudo sh -c "/opt/couchdb/bin/couchdb -version 1>> /data/logs/install_version.txt"
+    shell: sudo echo "couchdb version:" $(cat /data/wwwroot/couchdb/releases/*/couchdb.rel  |sed -n 3p | awk -F '"' '{print $4}') |sudo tee -a /data/logs/install_version.txt
   
   - name: Check CouchDB Service
     shell: systemctl status couchdb | grep Active*
