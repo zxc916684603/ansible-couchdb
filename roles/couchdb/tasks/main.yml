@@ -27,7 +27,7 @@
 - name: Configure CouchDB - auto create database 
   blockinfile:
     path: /opt/couchdb/etc/local.ini
-    insertafter: "^uuid"
+    insertafter: "[couchdb]"
     block: "single_node=true"
     
       
