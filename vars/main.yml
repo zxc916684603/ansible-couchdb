@@ -1,7 +1,16 @@
 #全局
 region: "0"
 
-nginx_certbot: True
+preend_certbot: True
 nginx_reverse_proxy_port: "5984"
-nginx_appname: "couchdb"
 nginx_vhost_mode: "reverse"
+
+
+init_application:
+  couchdb:
+    username: admin  
+    password: "123456"
+    commands:
+      - sed -i "s/^admin.=.*/admin = $new_password/g" /opt/couchdb/etc/local.ini
+      - systemctl restart couchdb
+
