@@ -1,4 +1,5 @@
-- name: Add CouchDB repositories
+# import repo
+- name: Add CouchDB repositories when os=cenos
   yum_repository:
     name: bintray-apache-couchdb-rpm
     file: bintray-apache-couchdb-rpm
@@ -8,7 +9,7 @@
     enabled: yes
   when: ansible_distribution == "CentOS"
 
-- name: Add CouchDB repositories
+- name: Add CouchDB repositories when os=other
   yum_repository:
     name: bintray-apache-couchdb-rpm
     file: bintray-apache-couchdb-rpm
@@ -18,12 +19,9 @@
     enabled: yes
   when: ansible_distribution != "CentOS"
 
+# install couchdb
 - name: Install CouchDB
-  shell: yum -y install couchdb
+  yum:
+    name: couchdb
+    update_cache: yes
   
-# https://docs.couchdb.org/en/latest/install/unix.html#dependencies
-- name: Install Dependencies
-  shell: yum install -y autoconf autoconf-archive automake  \
-    curl-devel erlang-asn1 erlang-erts erlang-eunit gcc-c++ \
-    erlang-os_mon erlang-xmerl erlang-erl_interface help2man \
-    js-devel-1.8.5 libicu-devel libtool perl-Test-Harness
