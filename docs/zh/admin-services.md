@@ -5,29 +5,18 @@
 ## CouchDB
 
 ```shell
-sudo systemctl start couchdb-server
-sudo systemctl stop couchdb-server
-sudo systemctl restart couchdb-server
-sudo systemctl status couchdb-server
+sudo systemctl start couchdb
+sudo systemctl stop couchdb
+sudo systemctl restart couchdb
+sudo systemctl status couchdb
 
-# you can use this debug mode if CouchDB service can't run
-couchdb-server console
 ```
 
-### MySQL
+### Nginx
 
 ```shell
-sudo systemctl start mysql
-sudo systemctl stop mysql
-sudo systemctl restart mysql
-sudo systemctl status mysql
-```
-
-### Redis
-
-```shell
-systemctl start redis
-systemctl stop redis
-systemctl restart redis
-systemctl status redis
+sudo systemctl start nginx
+sudo systemctl stop nginx
+sudo systemctl restart nginx
+sudo systemctl status nginx
 ```

@@ -26,4 +26,4 @@ yum update -y
 
 ## CouchDB Upgrade
 
-Refer to the official docs: [Upgrading CouchDB](https://www.couchdb.com/upgrade.html)
+Refer to the official docs: [Upgrading CouchDB](https://docs.couchdb.org/en/latest/install/upgrading.html)

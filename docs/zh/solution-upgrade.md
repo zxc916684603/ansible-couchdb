@@ -10,7 +10,7 @@ CouchDB 完整的更新升级包括：系统级更新（操作系统和运行环
 
 ## 系统级更新
 
-运行一条更新命令，即可完成系统级（包含CouchDB小版本更新）更新：
+运行一条更新命令，即可完成系统级更新：
 
 ``` shell
 #For Ubuntu&Debian
@@ -24,4 +24,4 @@ yum update -y
 
 ## CouchDB升级
 
-详情参考官方升级文档：[Upgrading CouchDB](https://www.couchdb.com/upgrade.html)
+详情参考官方升级文档：[Upgrading CouchDB](https://docs.couchdb.org/en/latest/install/upgrading.html)

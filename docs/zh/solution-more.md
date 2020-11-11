@@ -4,7 +4,7 @@
 
 ## 配置
 
-参考官方方案：https://www.couchdb.com/configure.html
+参考官方方案：https://docs.couchdb.org/en/latest/config/index.html
 
 ## 域名绑定
 

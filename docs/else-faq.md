@@ -1,19 +1,14 @@
 # FAQ
 
-#### How can I enable the debug mode of CouchDB service?
-
-```
-systemctl stop couchdb-server
-couchdb-server console
-```
 
 #### Can I reset password of CouchDB by command?
 
-Yes, e.g `couchdbctl change_password  admin newpassword`
+No，Log in to CouchDB web console,Set you new password from: 【Users】
+![](https://libs.websoft9.com/Websoft9/DocsPicture/en/couchdb/couchdb-pw-websoft9.png)
 
 #### If there is no domain name, can I deploy CouchDB?
 
-Yes, visit CouchDB by *http://Internet IP:8161*
+Yes, visit CouchDB by *http://Internet/_utils*
 
 #### What is the password for the database root user?
 
@@ -21,7 +16,7 @@ The password is stored in the server related file: `/credentials/password.txt`
 
 #### Is there a web-base GUI database management tools?
 
-Yes, phpMyAdmin is on it, visit by *http://Internet IP/phpmyadmin*
+Yes,  visit CouchDB by *http://Internet/_utils*
 
 #### Is it possible to modify the source path of CouchDB?
 
@@ -46,6 +41,12 @@ find /data/wwwroot -type f -exec chmod 640 {} \;
 #### What's Cloud Platform?
 
 Cloud platform refers to platform manufacturers that provide cloud computing services, such as: **Azure, AWS, Alibaba Cloud, HUAWEI CLOUD, Tencent Cloud**, etc.
+
+#### How backing up CouchDB？
+
+CouchDB has three different types of files it can create during runtime:Database files，Configuration files，Log files 
+Refer to the official docs：[Backing up CouchDB](https://docs.couchdb.org/en/latest/maintenance/backups.html)
+
 
 #### What is the difference between Instance, Cloud Server, Virtual Machine, ECS, EC2, CVM, and VM?
 

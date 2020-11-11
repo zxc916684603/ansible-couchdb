@@ -10,21 +10,21 @@ If you have completed the CouchDB deployment on Cloud Platform, the following st
 
 ## CouchDB Installation Wizard
 
-1. Using local Chrome or Firefox to visit the URL *http://DNS:15672* or *http://Internet IP:15672*, you will enter installation wizard of CouchDB
-   ![](https://libs.websoft9.com/Websoft9/DocsPicture/zh/couchdb/couchdb-login-websoft9.png)
+1. Using local Chrome or Firefox to visit the URL *http://DNS/_utils* or *http://Internet IP/_utils*, you will enter installation wizard of CouchDB
+   ![](https://libs.websoft9.com/Websoft9/DocsPicture/en/couchdb/couchdb-init-websoft9.png)
 
 2. Log in to CouchDB web console([Don't have password?](/stack-accounts.md#couchdb))  
-   ![](https://libs.websoft9.com/Websoft9/DocsPicture/zh/couchdb/couchdb-bk-websoft9.png)
+   ![](https://libs.websoft9.com/Websoft9/DocsPicture/en/couchdb/couchdb-bk-websoft9.png)
 
-3. Set you new password from: 【Users】>【Admin】>【Permissions】>【Update this user】
-   ![](https://libs.websoft9.com/Websoft9/DocsPicture/zh/couchdb/couchdb-pw-websoft9.png)
+3. Set you new password from: 【Users】
+   ![](https://libs.websoft9.com/Websoft9/DocsPicture/en/couchdb/couchdb-pw-websoft9.png)
 
-> More useful CouchDB guide, please refer to [CouchDB Documentation](https://www.couchdb.com/documentation.html)
+> More useful CouchDB guide, please refer to [CouchDB Documentation](https://docs.couchdb.org)
 
 ## Q&A
 
 #### I can't visit the start page of CouchDB?
 
-Your TCP:15672 of Security Group Rules is not allowed so there no response from Chrome or Firefox
+Your TCP:80 of Security Group Rules is not allowed so there no response from Chrome or Firefox
 
 #### CouchDB service can't start? 

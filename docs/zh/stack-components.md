@@ -13,9 +13,7 @@ CouchDB 预装包包含 CouchDB 运行所需一序列支撑软件（简称为“
 CouchDB 安装目录： */data/couchdb*  
 CouchDB 日志目录： */data/logs/couchdb*  
 
-### Erlang
 
-Erlang 安装目录： */data/erlang*  
 
 ## 端口号
 
@@ -25,9 +23,7 @@ Erlang 安装目录： */data/erlang*
 
 | 名称 | 端口号 | 用途 |  必要性 |
 | --- | --- | --- | --- |
-| HTTP | 15672 | 通过 HTTP 访问 CouchDB 控制台 | 可选 |
-| TCP | 5672 | epmd | 可选 |
-| TCP | 55672 | Erlang distribution | 可选 |
+| HTTP | 5984 | 通过 HTTP 访问 CouchDB 控制台 | 可选 |
 
 ## 版本号
 
@@ -40,10 +36,6 @@ sudo cat /data/logs/install_version.txt
 # Linux Version
 lsb_release -a
 
-# erlang  Version
-yum info erlang
-apt show erlang
-
 # CouchDB version
-couchdbctl status | grep CouchDB*
+cat /data/wwwroot/couchdb/releases/*/couchdb.rel  |sed -n 3p | awk -F '"' '{print $4}'
 ```

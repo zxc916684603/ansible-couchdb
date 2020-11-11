@@ -7,11 +7,7 @@ The CouchDB deployment package contains a sequence software (referred to as "com
 ### CouchDB
 
 CouchDB installation directory:  */data/couchdb*  
-CouchDB logs directory:  */data/logs/couchdb*  
-
-### Erlang
-
-Erlang installation directory:  */data/erlang*  
+CouchDB logs directory:  */data/logs/couchdb*   
 
 ## Ports
 
@@ -21,9 +17,8 @@ You can run the cmd `netstat -tunlp` to list all used ports, and we list the fol
 
 | Name | Number | Use |  Necessity |
 | --- | --- | --- | --- |
-| HTTP | 8161 | HTTP requests for CouchDB Console| Required |
-| HTTPS | 5672 | epmd | Optional |
-| TCP | 55672 | Erlang distribution | Optional |
+| HTTP | 5984 | HTTP requests for CouchDB Console| Required |
+
 
 
 ## Version
@@ -37,10 +32,6 @@ sudo cat /data/logs/install_version.txt
 # Linux Version
 lsb_release -a
 
-# erlang  Version
-yum info erlang
-apt show erlang
-
 # CouchDB version
-couchdbctl status | grep CouchDB*
+cat /data/wwwroot/couchdb/releases/*/couchdb.rel  |sed -n 3p | awk -F '"' '{print $4}'
 ```

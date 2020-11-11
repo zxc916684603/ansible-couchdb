@@ -4,7 +4,7 @@ Each of the following solutions has been proven to be effective and we hope to b
 
 ## Configuration 
 
-Refer to the official docs: https://www.couchdb.com/configure.html
+Refer to the official docs: https://docs.couchdb.org/en/latest/config/index.html
 
 ## Domain binding
 
