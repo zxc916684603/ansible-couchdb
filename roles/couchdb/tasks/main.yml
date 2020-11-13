@@ -23,7 +23,14 @@
     block: |
       [admins]
       {{couchdb_admin_username}} = {{couchdb_admin_password}}
-
+    
+- name: Enable CouchDB service
+  service:
+    name: couchdb
+    state: started
+    enabled: yes
+     
+# local.ini file needs to be created after CouchDB is started
 - name: Configure CouchDB - auto create database
   lineinfile:
     dest: /opt/couchdb/etc/local.ini
@@ -31,14 +38,12 @@
     insertbefore: '^[couch_peruser]'
     line: "single_node=true"
     
-      
 - name: Enable CouchDB service
   service:
     name: couchdb
     state: started
     enabled: yes
-
-
+    
 # set soft link, -b cover the exist links
 # ln -sf src des
 - name: set soft link
