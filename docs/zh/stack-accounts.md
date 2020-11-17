@@ -7,7 +7,7 @@
 ## CouchDB
 
 * 管理员账号: `admin`
-* 管理员密码: `admin` 或 存储在您的服务器中的文件中 */credentials/password.txt*  
+* 管理员密码: 存储在您的服务器中的文件中 */credentials/password.txt*  
 
 ## Linux
 

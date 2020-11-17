@@ -26,3 +26,31 @@ CouchDB domain name binding steps:
    ...
    }
    ```
+## Enable the MongoDB remote connection
+
+1. Use **SSH** to connect CouchDB server and modify the CouchDB configuration file: */opt/couchdb/etc/default.ini*
+   ```
+   #1 set bindIP to 0.0.0.0
+      #bind_address = 127.0.0.1
+      bind_address = 0.0.0.0
+   ```
+   > 0.0.0.0 means any Internet IP can connect your CouchDB
+
+2. Restart CouchDB service
+   ```
+   systemctl restart couchdb
+   ```
+
+
+## Password management
+
+Reset password is the process of resetting a new password through special solutions in case the password has been forgotten.
+
+1. Use **SSH** to connect CouchDB server and modify the CouchDB configuration file: */opt/couchdb/etc/local.ini*
+   ```
+   admin = $new_password
+   ```
+2. Restart the CouchDB service
+   ```
+   systemctl restart couchdb
+   ```

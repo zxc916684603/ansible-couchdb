@@ -14,7 +14,7 @@
 
 1. 确保域名解析已经生效  
 2. 使用 SFTP 工具登录云服务器
-2. 修改 [Nginx虚拟机主机配置文件](/zh/stack-components.md#nginx)，将其中的 **server_name** 项的值修改为你的域名
+3. 修改 [Nginx虚拟机主机配置文件](/zh/stack-components.md#nginx)，将其中的 **server_name** 项的值修改为你的域名
    ```text
    server
    {
@@ -25,4 +25,34 @@
    ...
    }
    ```
-3. 保存配置文件，重启 [Nginx 服务](/zh/admin-services.md#nginx)
+4. 保存配置文件，重启 [Nginx 服务](/zh/admin-services.md#nginx)
+
+
+## 开启远程访问
+
+1. 修改 CouchDB 配置文件 */opt/couchdb/etc/default.ini*
+   ```
+  将 bindIP 修改为 0.0.0.0 或 本地电脑公网IP
+      #bind_address = 127.0.0.1
+      bind_address = 0.0.0.0
+   ```
+   > 0.0.0.0 代表任意公网IP均可访问
+
+2. CouchDB
+   ```
+   systemctl restart couchdb
+
+## 密码管理
+
+### 重置密码
+
+重置密码即已经忘记密码的情况下，通过特殊手段重新设置新密码的过程。
+
+1. 修改 CouchDB 配置文件 */opt/couchdb/etc/local.ini*，将下面的$new_password替换成新密码
+   ```
+   admin = $new_password
+   ```
+2. 重启MongoDB服务
+   ```
+   systemctl restart couchdb
+   ```
