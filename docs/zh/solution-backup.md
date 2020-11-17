@@ -59,3 +59,8 @@ sidebarDepth: 3
    ![](https://libs.websoft9.com/Websoft9/DocsPicture/zh/mysql/phpmyadmin-export-websoft9.png)
 3. 将程序文件和数据库文件放到同一个文件夹，根据日期命名
 4. 备份工作完成
+
+### CouchDb如何进行备份？
+
+CouchDB备份涉及到3种不同的文件：数据库文件，配置文件，日志文件
+详情参考官方备份文档：[Backing up CouchDB](https://docs.couchdb.org/en/latest/maintenance/backups.html)

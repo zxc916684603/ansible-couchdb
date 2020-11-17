@@ -54,3 +54,8 @@ The general manual backup operation steps are as follows:
    ![](https://libs.websoft9.com/Websoft9/DocsPicture/en/phpmyadmin/phpmyadmin-export-websoft9.png)
 3. Put the source code file and database file in the same folder, named according to the date
 4. Backup completed
+
+### How backing up CouchDB？
+
+CouchDB has three different types of files it can create during runtime:Database files，Configuration files，Log files 
+Refer to the official docs：[Backing up CouchDB](https://docs.couchdb.org/en/latest/maintenance/backups.html)
