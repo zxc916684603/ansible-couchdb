@@ -10,7 +10,7 @@
 
 ## CouchDB 安装向导
 
-1. 使用本地电脑的 Chrome 或 Firefox 浏览器访问网址：*http://域名/_utils* 或 *http://Internet IP/_utils*, 进入初始化页面
+1. 使用本地 Chrome 或 Firefox 访问网址：*http://域名/_utils* 或 *http://Internet IP/_utils*, 进入初始化页面
    ![](https://libs.websoft9.com/Websoft9/DocsPicture/zh/couchdb/couchdb-init-websoft9.png)
 
 2. 输入账号密码（[不知道账号密码？](/zh/stack-accounts.md#couchdb)），成功登录到 CouchDB 后台  
@@ -26,7 +26,3 @@
 #### 浏览器打开IP地址，无法访问 CouchDB（白屏没有结果）？
 
 您的服务器对应的安全组80端口没有开启（入规则），导致浏览器无法访问到服务器的任何内容
-
-#### CouchDB 服务启动失败？
-
-暂无

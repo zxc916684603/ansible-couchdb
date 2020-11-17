@@ -8,6 +8,8 @@ home: false
 
 [CouchDB](https://couchdb.apache.org/) CouchDB 是一个开源的面向文档的数据库管理系统，可以通过 RESTful JavaScript Object Notation (JSON) API 访问。 CouchDB 的目标具有高度可伸缩性，提供了高可用性和高可靠性，即使运行在容易出现故障的硬件上也是如此。
 
+![](https://libs.websoft9.com/Websoft9/DocsPicture/zh/couchdb/couchdb-gui-websoft9.png)
+
 ---
 
 ## 改进
