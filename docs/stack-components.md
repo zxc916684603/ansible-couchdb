@@ -9,6 +9,12 @@ The CouchDB deployment package contains a sequence software (referred to as "com
 CouchDB installation directory:  */data/couchdb*  
 CouchDB logs directory:  */data/logs/couchdb*   
 
+### Nginx
+
+Nginx vhost configuration file: */etc/nginx/sites-available/default.conf*  
+Nginx main configuration file: */etc/nginx/nginx.conf*  
+Nginx logs file: */var/log/nginx/*
+
 ## Ports
 
 You can control(open or shut down) ports by **[Security Group Setting](https://support.websoft9.com/docs/faq/zh/tech-instance.html)** of your Cloud Server whether the port can be accessed from Internet.
@@ -18,7 +24,8 @@ You can run the cmd `netstat -tunlp` to list all used ports, and we list the fol
 | Name | Number | Use |  Necessity |
 | --- | --- | --- | --- |
 | HTTP | 5984 | HTTP requests for CouchDB Console| Required |
-
+| HTTP | 80 |  nginx HTTP port | Required |
+| HTTP | 443 | nginx HTTPS port| Required |
 
 
 ## Version
@@ -31,6 +38,9 @@ sudo cat /data/logs/install_version.txt
 
 # Linux Version
 lsb_release -a
+
+# Nginx Version
+nginx -v
 
 # CouchDB version
 cat /data/wwwroot/couchdb/releases/*/couchdb.rel  |sed -n 3p | awk -F '"' '{print $4}'
