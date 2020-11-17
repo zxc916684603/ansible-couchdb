@@ -54,3 +54,16 @@ Reset password is the process of resetting a new password through special soluti
    ```
    systemctl restart couchdb
    ```
+
+## Authentication Configuration
+
+1. Modify the CouchDB configuration file */opt/couchdb/etc/default.ini*
+   ```
+  When this option is set to true, no requests are allowed from anonymous users. Everyone must be authenticated.
+   [chttpd]
+   require_valid_user = false
+   ```
+
+2. CouchDB
+   ```
+   systemctl restart couchdb

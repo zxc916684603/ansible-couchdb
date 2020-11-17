@@ -56,3 +56,16 @@
    ```
    systemctl restart couchdb
    ```
+
+## 开启用户认证
+
+1. 修改 CouchDB 配置文件 */opt/couchdb/etc/default.ini*
+   ```
+  将 require_valid_user 的值设置为 false， 则每个人都必须经过身份验证。
+   [chttpd]
+   require_valid_user = false
+   ```
+
+2. CouchDB
+   ```
+   systemctl restart couchdb
