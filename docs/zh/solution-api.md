@@ -1,120 +1,95 @@
-# MongoDB shell
+# CouchDB API
 
-MongoDB Shell 是 MongoDB 自带的一个交互式 JavaScript shell，让您能够访问、配置和管理MongoDB数据库、用户等。使用这个shell可执行各种任务，从设置用户账户到创建数据库，再到查询数据库内容，无所不包。
+CouchDB API是与CouchDB实例接口的主要方法。使用HTTP发出请求，请求用于从数据库请求信息，存储新数据以及对文档中存储的信息进行查看和格式化。
+对API的请求可以按照您正在访问的CouchDB系统的不同区域以及用于发送请求的HTTP方法进行分类。不同的方法意味着不同的操作，例如，从数据库中检
+索信息通常由该GET操作处理，而更新则由POST或PUT请求处理。不同方法必须提供的信息之间存在一些差异。
 
-### 启动 MongoDB shell
+### 请求格式和响应
 
-使用 Websoft9 提供的 MongoDB 部署方案，默认已经配置好了环境变量。只需登录服务器，运行`mongo`命令，即可进入 MongoDB shell
+- GET
+要求指定的物品。与普通的HTTP请求一样，URL的格式定义了返回的内容。使用CouchDB，它可以包括静态项目，数据库文档以及配置和统计信息。在大多数情况下，信息以JSON文档的形式返回。
 
-```shell
-# log in Mongo Shell without authenticating
-mongo
+- HEAD
+该HEAD方法用于获取GET没有响应主体的请求的HTTP标头。
 
-# log in Mongo Shell witt authenticating
-mongo admin --username root -p
+- POST
+上传数据。在CouchDBPOST中，用于设置值，包括上载文档，设置文档值和启动某些管理命令。
 
+- PUT
+用于放置指定的资源。在CouchDBPUT中用于创建新对象，包括数据库，文档，视图和设计文档。
 
-MongoDB Enterprise > help
-        db.help()                    help on db methods
-        db.mycoll.help()             help on collection methods
-        sh.help()                    sharding helpers
-        rs.help()                    replica set helpers
-        help admin                   administrative help
-        help connect                 connecting to a db help
-        help keys                    key shortcuts
-        help misc                    misc things to know
-        help mr                      mapreduce
+- DELETE
+删除指定的资源，包括文档，视图和设计文档。
 
-        show dbs                     show database names
-        show collections             show collections in current database
-        show users                   show users in current database
-        show profile                 show most recent system.profile entries with time >= 1ms
-        show logs                    show the accessible logger names
-        show log [name]              prints out the last segment of log in memory, 'global' is default
-        use <db_name>                set current database
-        db.foo.find()                list objects in collection foo
-        db.foo.find( { a : 1 } )     list objects in foo where a == 1
-        it                           result of the last line evaluated; use to further iterate
-        DBQuery.shellBatchSize = x   set default number of items to display on shell
-        exit                         quit the mongo shell
+### 请求实例
 
+通过url http://ip:5984/_active_tasks访问，将返回查询结果。
+
+```Request
+GET /_active_tasks HTTP/1.1
+Accept: application/json
+Host: localhost:5984
 ```
 
+```Response
+HTTP/1.1 200 OK
+Cache-Control: must-revalidate
+Content-Length: 1690
+Content-Type: application/json
+Date: Sat, 10 Aug 2013 06:37:31 GMT
+Server: CouchDB (Erlang/OTP)
 
-### 常见命令
-
-#### 显示、创建和切换数据库
-
-```shell
-
-> show dbs
-admin     0.000GB
-config    0.000GB
-local     0.000GB
-
-# 创建test数据库（如果不存在test数据库，就会自动创建它）
-> use test
-switched to db test
-
-# 显示当前数据库
-> db
-test
-
-# 显示当前所有用户数据
-> show users
-
-#3 插入数据到数据库
-> db.test.insert({"name":"company"})
-WriteResult({ "nInserted" : 1 })
-```
-
-
-#### 删除数据库
-```
-> show dbs
-admin     0.000GB
-config    0.000GB
-local     0.000GB
-test      0.000GB
-websoft9  0.000GB
-
-> use test
-switched to db test
-> use test
-> db.dropDatabase()
-{ "dropped" : "test", "ok" : 1 }
-> show dbs
-admin     0.000GB
-config    0.000GB
-local     0.000GB
-websoft9  0.000GB
-```
-
-#### 创建管理员账号
-
-```
-> mongo
-> use admin
-switched to db admin
-> db.createUser( { user: "webs_admin", pwd: "websoft9", roles: ["userAdminAnyDatabase"] } )
-Successfully added user: { "user" : "webs_admin", "roles" : [ "userAdminAnyDatabase" ] }
-
-
-# 显示账号
-> show users
-{
-        "_id" : "admin.webs_admin",
-        "user" : "webs_admin",
-        "db" : "admin",
-        "roles" : [
-                {
-                        "role" : "userAdminAnyDatabase",
-                        "db" : "admin"
-                }
-        ],
-        "mechanisms" : [
-                "SCRAM-SHA-1",
-                "SCRAM-SHA-256"
-        ]
-}
+[
+    {
+        "changes_done": 64438,
+        "database": "mailbox",
+        "pid": "<0.12986.1>",
+        "progress": 84,
+        "started_on": 1376116576,
+        "total_changes": 76215,
+        "type": "database_compaction",
+        "updated_on": 1376116619
+    },
+    {
+        "changes_done": 14443,
+        "database": "mailbox",
+        "design_document": "c9753817b3ba7c674d92361f24f59b9f",
+        "pid": "<0.10461.3>",
+        "progress": 18,
+        "started_on": 1376116621,
+        "total_changes": 76215,
+        "type": "indexer",
+        "updated_on": 1376116650
+    },
+    {
+        "changes_done": 5454,
+        "database": "mailbox",
+        "design_document": "_design/meta",
+        "pid": "<0.6838.4>",
+        "progress": 7,
+        "started_on": 1376116632,
+        "total_changes": 76215,
+        "type": "indexer",
+        "updated_on": 1376116651
+    },
+    {
+        "checkpointed_source_seq": 68585,
+        "continuous": false,
+        "doc_id": null,
+        "doc_write_failures": 0,
+        "docs_read": 4524,
+        "docs_written": 4524,
+        "missing_revisions_found": 4524,
+        "pid": "<0.1538.5>",
+        "progress": 44,
+        "replication_id": "9bc1727d74d49d9e157e260bb8bbd1d5",
+        "revisions_checked": 4524,
+        "source": "mailbox",
+        "source_seq": 154419,
+        "started_on": 1376116644,
+        "target": "http://mailsrv:5984/mailbox",
+        "type": "replication",
+        "updated_on": 1376116651
+    }
+]
 ```

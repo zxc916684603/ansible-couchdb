@@ -13,6 +13,12 @@ CouchDB 预装包包含 CouchDB 运行所需一序列支撑软件（简称为“
 CouchDB 安装目录： */data/couchdb*  
 CouchDB 日志目录： */data/logs/couchdb*  
 
+### Nginx
+
+Nginx vhost 配置文件: */etc/nginx/sites-available/default.conf*  
+Nginx main 配置文件: */etc/nginx/nginx.conf*  
+Nginx 日志文件路径 : */var/log/nginx/*
+
 
 
 ## 端口号
